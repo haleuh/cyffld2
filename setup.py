@@ -6,7 +6,7 @@ import os
 import versioneer
 
 
-include_dirs = ['ffld2', 'ffld2/lib']
+include_dirs = ['cyffld2/ffld2', 'cyffld2/ffld2/lib']
 library_dirs = []
 extra_compile_args = []
 extra_link_args = []
@@ -28,9 +28,10 @@ _platform = platform.platform().lower()
 if 'linux' in _platform:
     extra_compile_args += ['-fopenmp']
     extra_link_args += ['-fopenmp']
-
+    include_dirs += ['/usr/include/eigen3', '/usr/include/libxml2']
     libraries += ['xml2', 'fftw3f', 'jpeg']
 elif 'darwin' in _platform:
+    include_dirs += ['/usr/include/eigen3', '/usr/include/libxml2']
     libraries += ['xml2', 'fftw3f', 'jpeg']
 elif 'windows' in _platform:
     extra_compile_args += ['/openmp']
